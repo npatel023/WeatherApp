@@ -1,0 +1,15 @@
+body {
+  background: #D6DBDF;
+  box-sizing: border-box;
+  color: #dcdcdc;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
