@@ -2,7 +2,7 @@ import React from 'react';
 
 function WeatherInfo({ data: { temp, humidity, city, desc } }) {
   return (
-    <React.Fragment>
+    <>
       <h3>{desc}</h3>
       <section className="weather-data-flex">
         <div className="header-description">
@@ -21,7 +21,7 @@ function WeatherInfo({ data: { temp, humidity, city, desc } }) {
           <p>{humidity}%</p>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 
