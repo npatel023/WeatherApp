@@ -70,20 +70,25 @@ function WeatherContainer() {
             className="search-input"
             onChange={updateSearchQuery}
             maxLength="5"
+            type="number"
           />
-          <button onClick={getWeatherData} className="material-icons">
+          <button
+            onClick={getWeatherData}
+            type="button"
+            className="material-icons"
+          >
             search
           </button>
         </div>
       </header>
       <p className="error">{isValidZipCode ? '' : 'Invalid Zip Code'}</p>
       <section className="weather-info">
-        {weatherData.temp === null ? (
+        {weatherData.temp ? (
+          <WeatherInfo data={weatherData} />
+        ) : (
           <p>
             No Weather to Display<i className="material-icons">wb_sunny</i>
           </p>
-        ) : (
-          <WeatherInfo data={weatherData} />
         )}
       </section>
     </section>
