@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import WeatherInfo from './WeatherInfo';
 
 function WeatherContainer() {
-  const API_KEY = '257f6e6500a76a1fbe728e9b4c5f159b';
   const [searchQuery, setSearchQuery] = useState('');
   const [weatherData, setWeatherData] = useState({
     temp: null,
@@ -35,7 +34,7 @@ function WeatherContainer() {
       return;
     }
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${searchQuery},us&appid=${API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?zip=${searchQuery},us&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
     )
       .then(response => response.json())
       .then(data =>
