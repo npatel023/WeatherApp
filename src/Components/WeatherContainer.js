@@ -33,16 +33,9 @@ function WeatherContainer() {
   });
   const [isValidZipCode, setIsValidZipCode] = useState(true);
 
-  function updateSearchQuery(event) {
-    let zipCode = event.target.value;
-    let isValid = validateZipCode(zipCode);
-    setSearchQuery(zipCode);
-
-    if (isValid || zipCode === '' || isValid.length === 5) {
-      setIsValidZipCode(true);
-    } else {
-      setIsValidZipCode(false);
-    }
+  function updateSearchQuery({ target: { value } }) {
+    setSearchQuery(value);
+    setIsValidZipCode(value === '' || validateZipCode(value));
   }
 
   function getWeatherData() {
