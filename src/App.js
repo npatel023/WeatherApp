@@ -1,5 +1,4 @@
 import React from 'react';
-import './Styles/App.css';
 import WeatherContainer from './components/WeatherContainer';
 
 function App() {
