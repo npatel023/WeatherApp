@@ -4,6 +4,10 @@ import WeatherInfo from './WeatherInfo';
 const createAPIUrl = query =>
   `https://api.openweathermap.org/data/2.5/weather?zip=${query},us&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
 
+const zipRegx = /[0-9]{5}/;
+
+const validateZipCode = zipCode => zipRegx.test(zipCode);
+
 function WeatherContainer() {
   const [searchQuery, setSearchQuery] = useState('');
   const [weatherData, setWeatherData] = useState({
@@ -24,11 +28,6 @@ function WeatherContainer() {
     } else {
       setIsValidZipCode(false);
     }
-  }
-
-  function validateZipCode(zipCode) {
-    let regex = /[0-9]{5}/;
-    return regex.test(zipCode);
   }
 
   function getWeatherData() {
