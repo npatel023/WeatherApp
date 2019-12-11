@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import WeatherInfo from './WeatherInfo';
 
+const createAPIUrl = query =>
+  `https://api.openweathermap.org/data/2.5/weather?zip=${query},us&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
+
 function WeatherContainer() {
   const [searchQuery, setSearchQuery] = useState('');
   const [weatherData, setWeatherData] = useState({
@@ -33,9 +36,7 @@ function WeatherContainer() {
       setIsValidZipCode(false);
       return;
     }
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?zip=${searchQuery},us&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`
-    )
+    fetch(createAPIUrl(searchQuery))
       .then(response => response.json())
       .then(data =>
         setWeatherData({
