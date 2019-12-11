@@ -1,12 +1,27 @@
 import React, { useState } from 'react';
 import WeatherInfo from './WeatherInfo';
 
+/**
+ *
+ * @param {string} query
+ */
 const createAPIUrl = query =>
   `https://api.openweathermap.org/data/2.5/weather?zip=${query},us&appid=${process.env.REACT_APP_OPEN_WEATHER_API_KEY}`;
 
 const zipRegx = /[0-9]{5}/;
 
+/**
+ *
+ * @param {string} zipCode
+ */
 const validateZipCode = zipCode => zipRegx.test(zipCode);
+
+/**
+ *
+ * @param {number} temp
+ */
+const convertToFarenheit = temp =>
+  ((temp - 273.15) * (9.0 / 5.0) + 32).toFixed(0);
 
 function WeatherContainer() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -45,10 +60,6 @@ function WeatherContainer() {
           city: data.name
         })
       );
-  }
-
-  function convertToFarenheit(temp) {
-    return ((temp - 273.15) * (9.0 / 5.0) + 32).toFixed(0);
   }
 
   return (
