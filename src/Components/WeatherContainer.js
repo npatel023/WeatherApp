@@ -38,21 +38,26 @@ function WeatherContainer() {
     setIsValidZipCode(value === '' || validateZipCode(value));
   }
 
-  function getWeatherData() {
+  async function getWeatherData() {
     if (!isValidZipCode || searchQuery === '') {
       setIsValidZipCode(false);
       return;
     }
-    fetch(createAPIUrl(searchQuery))
-      .then(response => response.json())
-      .then(data =>
-        setWeatherData({
-          temp: convertToFarenheit(data.main.temp),
-          humidity: data.main.humidity,
-          desc: data.weather[0].main,
-          city: data.name
-        })
-      );
+
+    const response = await fetch(createAPIUrl(searchQuery));
+
+    if (!response.ok) {
+      return;
+    }
+
+    const { main, weather, name } = await response.json();
+
+    setWeatherData({
+      temp: convertToFarenheit(main.temp),
+      humidity: main.humidity,
+      desc: weather[0].main,
+      city: name
+    });
   }
 
   return (
