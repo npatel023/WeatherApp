@@ -1,10 +1,8 @@
-import React from "react";
-// import "../Styles/Weather.css";
+import React from 'react';
 
-function WeatherInfo(props) {
-  const { temp, humidity, city, desc } = props.data;
+function WeatherInfo({ data: { temp, humidity, city, desc } }) {
   return (
-    <React.Fragment>
+    <>
       <h3>{desc}</h3>
       <section className="weather-data-flex">
         <div className="header-description">
@@ -15,7 +13,7 @@ function WeatherInfo(props) {
           <h4>Temperature</h4>
           <p>
             {temp}
-            <span className="degree-symbol"></span> F
+            <span className="degree-symbol" /> F
           </p>
         </div>
         <div className="header-description">
@@ -23,7 +21,7 @@ function WeatherInfo(props) {
           <p>{humidity}%</p>
         </div>
       </section>
-    </React.Fragment>
+    </>
   );
 }
 
